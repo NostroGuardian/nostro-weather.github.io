@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <title>Nostro Weather</title>
+      <link rel="stylesheet" href="main.css" class="css">
+      <script>
+         var settings = {
+           "async": true,
+           "crossDomain": true,
+           "url": "https://api.openweathermap.org/data/2.5/weather?lat=55.751244&lon=37.618423&units=metric&appid=9c0e07a02a25eeb7c59d6a281acc97c0",
+           "method": "GET"
+         }
+
+         $.ajax(settings).done(function (response) {
+           console.log(response);
+
+           var temp = response.main.temp;
+           $("#temp_value").append(temp);
+
+           var wind = response.wind.speed;
+           $("#wind_value").append(wind);
+
+           var humidity = response.main.humidity;
+           $("#humidity_value").append(humidity);
+
+         });
+      </script>
+   </head>
+   <body>
+      <h1 class="main_header">Nostro Weather</h1>
+      <div class="geoposition">
+         <img src="img/marker.png">
+         <p>Moscow</p>
+      </div>
+
+      <div class="container">
+
+         <div class="row">
+
+            <div class="item">
+               <img src="img/temp.png" alt="temp">
+               <div class="value_div">
+                  <p class="main_value" id="temp_value"></p>
+                  <p class="sub_value">°</p>
+               </div>
+            </div>
+
+            <div class="item">
+               <img src="img/wind.png" alt="wind">
+               <div class="value_div">
+                  <p class="main_value" id="wind_value"></p>
+                  <p class="sub_value">m/s</p>
+               </div>
+            </div>
+
+            <div class="item">
+               <img src="img/humidity.png" alt="humidity">
+               <div class="value_div">
+                  <p class="main_value" id="humidity_value"></p>
+                  <p class="sub_value">%</p>
+               </div>
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="copy"><p>&copy; nostro-development.ru</p></div>
+
+   </body>
+</html>
